@@ -21,11 +21,25 @@ const (
 
 // Memory allows converstion between string and float representations and basic math operations on memory types
 type Memory interface {
+	// Add will parse the memory expressed as a string and return a new memory instance
+	// equal to the sum of the current instance plus m
 	Add(m string) (Memory, error)
+
+	// AddF will return a new memory instance equal to the sum of the current instance plus m
 	AddF(m float64) Memory
+
+	// Sub will parse the memory expressed as a string and return a new memory instance
+	// equal to the current instance minus m
 	Sub(m string) (Memory, error)
+
+	// Add will return a new memory instance equal to the current instance minus m
 	SubF(m float64) Memory
+
+	// ToString returns the Kubernetes-style memory value as a string rounded up to the nearest
+	// megabyte.  Values over 1Gi will still be returned as an equivalent Mi value.
 	ToString() string
+
+	// ToFloat returns the memory value as a float64
 	ToFloat64() float64
 }
 
