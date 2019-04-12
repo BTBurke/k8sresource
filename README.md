@@ -1,5 +1,7 @@
 # Memcalc
 
+[![Documentation](https://godoc.org/github.com/BTBurke/memcalc?status.svg)](http://godoc.org/github.com/BTBurke/memcalc)
+
 This package contains a few utility functions for converting Kubernetes-style memory definitions between their string and float64 equivalents, and for doing simple math operations.
 
 Example:
