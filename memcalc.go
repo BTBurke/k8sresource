@@ -20,90 +20,67 @@ const (
 )
 
 // Memory allows converstion between string and float representations and basic math operations on memory types
-type Memory interface {
-	// Add will parse the memory expressed as a string and return a new memory instance
-	// equal to the sum of the current instance plus m
-	Add(m string) (Memory, error)
-
-	// AddF will return a new memory instance equal to the sum of the current instance plus m
-	AddF(m float64) Memory
-
-	// Sub will parse the memory expressed as a string and return a new memory instance
-	// equal to the current instance minus m
-	Sub(m string) (Memory, error)
-
-	// Add will return a new memory instance equal to the current instance minus m
-	SubF(m float64) Memory
-
-	// ToString returns the Kubernetes-style memory value as a string rounded up to the nearest
-	// megabyte.  Values over 1Gi will still be returned as an equivalent Mi value.
-	ToString() string
-
-	// ToFloat returns the memory value as a float64
-	ToFloat64() float64
-}
-
-type memory struct {
+type Memory struct {
 	m float64
 }
 
 // New returns a new memory instance initialized at 0
 func New() Memory {
-	return memory{0}
+	return Memory{0}
 }
 
 // NewFromString parses a Kubernetes-style memory string (e.g., 256Mi, 1Gi)
 func NewFromString(m string) (Memory, error) {
 	f, err := memToFloat64(m)
 	if err != nil {
-		return nil, err
+		return Memory{}, err
 	}
-	return memory{f}, nil
+	return Memory{f}, nil
 }
 
 // NewFromFloat creates a new memory instance initialized to m
 func NewFromFloat(m float64) Memory {
-	return memory{m}
+	return Memory{m}
 }
 
 // Add will parse the memory expressed as a string and return a new memory instance
 // equal to the sum of the current instance plus m
-func (s memory) Add(m string) (Memory, error) {
+func (s Memory) Add(m string) (Memory, error) {
 	f, err := memToFloat64(m)
 	if err != nil {
-		return nil, err
+		return Memory{}, err
 	}
-	return memory{s.m + f}, nil
+	return Memory{s.m + f}, nil
 }
 
 // Sub will parse the memory expressed as a string and return a new memory instance
 // equal to the current instance minus m
-func (s memory) Sub(m string) (Memory, error) {
+func (s Memory) Sub(m string) (Memory, error) {
 	f, err := memToFloat64(m)
 	if err != nil {
-		return nil, err
+		return Memory{}, err
 	}
-	return memory{s.m - f}, nil
+	return Memory{s.m - f}, nil
 }
 
 // AddF will return a new memory instance equal to the sum of the current instance plus m
-func (s memory) AddF(m float64) Memory {
-	return memory{s.m + m}
+func (s Memory) AddF(m float64) Memory {
+	return Memory{s.m + m}
 }
 
-// Add will return a new memory instance equal to the current instance minus m
-func (s memory) SubF(m float64) Memory {
-	return memory{s.m - m}
+// SubF will return a new memory instance equal to the current instance minus m
+func (s Memory) SubF(m float64) Memory {
+	return Memory{s.m - m}
 }
 
 // ToString returns the Kubernetes-style memory value as a string rounded up to the nearest
 // megabyte.  Values over 1Gi will still be returned as an equivalent Mi value.
-func (s memory) ToString() string {
+func (s Memory) ToString() string {
 	return float64ToMi(s.m)
 }
 
-// ToFloat returns the memory value as a float
-func (s memory) ToFloat64() float64 {
+// ToFloat64 returns the memory value as a float
+func (s Memory) ToFloat64() float64 {
 	return s.m
 }
 
