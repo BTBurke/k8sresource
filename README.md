@@ -1,6 +1,9 @@
 # K8Sresource
 
+[![Documentation](https://godoc.org/github.com/BTBurke/k8sresource?status.svg)](http://godoc.org/github.com/BTBurke/k8sresource)
+
 This package contains a few utility functions for converting Kubernetes-style memory and cpu definitions between their string and numeric equivalents, and for doing simple math operations.
+
 
 Example:
 
@@ -24,7 +27,7 @@ func main() {
     fmt.Printf("As Float: %f\n", mem2.ToFloat64())
     fmt.Printf("As String: %s\n", mem2.ToString())
     //As Float: 1073741824.000000
-	//As String: 1024Mi
+    //As String: 1024Mi
 }
 ```
 
