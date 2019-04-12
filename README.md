@@ -24,7 +24,7 @@ func main() {
     fmt.Printf("As Float: %f\n", mem2.ToFloat64())
     fmt.Printf("As String: %s\n", mem2.ToString())
     //As Float: 1073741824.000000
-	//As String: 1024Mi
+    //As String: 1024Mi
 }
 ```
 
