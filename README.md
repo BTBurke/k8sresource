@@ -1,6 +1,6 @@
-# Memcalc
+# K8Sresource
 
-This package contains a few utility functions for converting Kubernetes-style memory definitions between their string and float64 equivalents, and for doing simple math operations.
+This package contains a few utility functions for converting Kubernetes-style memory and cpu definitions between their string and numeric equivalents, and for doing simple math operations.
 
 Example:
 
@@ -10,11 +10,11 @@ package main
 import (
     "fmt"
     "log"
-    "github.com/BTBurke/memcalc"
+    "github.com/BTBurke/k8sresource"
 )
 
 func main() {
-    mem1, err := memcalc.NewFromString("512Mi")
+    mem1, err := k8sresource.NewMemFromString("512Mi")
     if err != nil {
         // check error, only supports definitions in Mi or Gi format
         log.Fatalf("unsupported suffix")
@@ -28,4 +28,4 @@ func main() {
 }
 ```
 
-See the [godoc](https://godoc.org/github.com/BTBurke/memcalc) for more operations.
+See the [godoc](https://godoc.org/github.com/BTBurke/k8sresource) for more operations.
