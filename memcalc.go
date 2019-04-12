@@ -1,7 +1,7 @@
-// Package memcalc provides utility functions for working with Kubernetes-style memory resources
-// which are expressed as strings such as 256Mi or 2Gi.  Methods are provided for converting
-// between string representations and floats, and for math operations.
-package memcalc
+// Package k8sresource provides utility functions for working with Kubernetes-style memory and cpu resources
+// which are expressed as strings such as 256Mi or 2Gi for memory and 100m or 0.1 for CPU.  Methods are provided for converting
+// between string representations and numeric values, and for math operations.
+package k8sresource
 
 import (
 	"fmt"
@@ -24,13 +24,13 @@ type Memory struct {
 	m float64
 }
 
-// New returns a new memory instance initialized at 0
-func New() Memory {
+// NewMem returns a new memory instance initialized at 0
+func NewMem() Memory {
 	return Memory{0}
 }
 
-// NewFromString parses a Kubernetes-style memory string (e.g., 256Mi, 1Gi)
-func NewFromString(m string) (Memory, error) {
+// NewMemFromString parses a Kubernetes-style memory string (e.g., 256Mi, 1Gi)
+func NewMemFromString(m string) (Memory, error) {
 	f, err := memToFloat64(m)
 	if err != nil {
 		return Memory{}, err
@@ -38,8 +38,8 @@ func NewFromString(m string) (Memory, error) {
 	return Memory{f}, nil
 }
 
-// NewFromFloat creates a new memory instance initialized to m
-func NewFromFloat(m float64) Memory {
+// NewMemFromFloat creates a new memory instance initialized to m
+func NewMemFromFloat(m float64) Memory {
 	return Memory{m}
 }
 

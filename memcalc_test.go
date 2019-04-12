@@ -1,4 +1,4 @@
-package memcalc
+package k8sresource
 
 import (
 	"testing"
@@ -6,7 +6,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestConvertStringToFloat(t *testing.T) {
+func TestMemConvertStringToFloat(t *testing.T) {
 	tcs := []struct {
 		Name      string
 		Value     string
@@ -34,7 +34,7 @@ func TestConvertStringToFloat(t *testing.T) {
 	}
 }
 
-func TestConvertFloatToString(t *testing.T) {
+func TestMemConvertFloatToString(t *testing.T) {
 	tcs := []struct {
 		Name     string
 		Value    float64
@@ -55,7 +55,7 @@ func TestConvertFloatToString(t *testing.T) {
 	}
 }
 
-func TestAdd(t *testing.T) {
+func TestMemAdd(t *testing.T) {
 	tcs := []struct {
 		Name     string
 		Value1   string
@@ -67,7 +67,7 @@ func TestAdd(t *testing.T) {
 	}
 	for _, tc := range tcs {
 		t.Run(tc.Name, func(t *testing.T) {
-			m, err := NewFromString(tc.Value1)
+			m, err := NewMemFromString(tc.Value1)
 			assert.NoError(t, err)
 			mAdded, err := m.Add(tc.Value2)
 			assert.NoError(t, err)
@@ -76,7 +76,7 @@ func TestAdd(t *testing.T) {
 	}
 }
 
-func TestSub(t *testing.T) {
+func TestMemSub(t *testing.T) {
 	tcs := []struct {
 		Name     string
 		Value1   string
@@ -90,7 +90,7 @@ func TestSub(t *testing.T) {
 	}
 	for _, tc := range tcs {
 		t.Run(tc.Name, func(t *testing.T) {
-			m, err := NewFromString(tc.Value1)
+			m, err := NewMemFromString(tc.Value1)
 			assert.NoError(t, err)
 			mAdded, err := m.Sub(tc.Value2)
 			assert.NoError(t, err)

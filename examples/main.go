@@ -4,11 +4,11 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/BTBurke/memcalc"
+	"github.com/BTBurke/k8sresource"
 )
 
 func main() {
-	mem1, err := memcalc.NewFromString("512Mi")
+	mem1, err := k8sresource.NewMemFromString("512Mi")
 	if err != nil {
 		// check error, only supports definitions in Mi or Gi format
 		log.Fatalf("unsupported suffix")
